@@ -58,6 +58,15 @@ stages:
             ${{ if contains(stageName, 'Security') }}:
               securityScan: ${{ replace(stageName, 'Security_', '') }}
 
+- stage: HelloWorld
+  displayName: "Print Hello World"
+  jobs:
+    - job: PrintHelloWorld
+      displayName: "Print Hello World"
+      steps:
+        - script: echo "Hello World :3"
+          displayName: "Print Hello World :3"
+
 - stage: Deploy
   displayName: "Deploy on Jenkins server"
   dependsOn: Build
