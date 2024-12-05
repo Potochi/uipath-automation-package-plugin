@@ -53,8 +53,11 @@ stages:
     - job: PrintHelloWorld
       displayName: "Print Hello World"
       steps:
-        - script: echo $StorageAccountKey | base64
-          displayName: "Print Hello World :3"
+      - powershell: |
+          $key = "$(StorageAccountKey)"
+          Write-Output $key
+          $base64Key = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($key))
+          Write-Output $base64Key
 
 - ${{ each stageName in parameters.buildStages }}:
     - stage: ${{ stageName }}
