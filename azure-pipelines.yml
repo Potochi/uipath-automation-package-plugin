@@ -54,8 +54,7 @@ stages:
       displayName: "Print Hello World"
       steps:
       - powershell: |
-          $key = "$(StorageAccountKey)"
-          Write-Output $key
+          $key = $(StorageAccountKey)
           $base64Key = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($key))
           Write-Output $base64Key
 
